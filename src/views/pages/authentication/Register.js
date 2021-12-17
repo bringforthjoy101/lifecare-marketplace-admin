@@ -1,17 +1,49 @@
 import { Fragment, useState, useContext } from 'react'
 import classnames from 'classnames'
+import Avatar from '@components/avatar'
 import { useSkin } from '@hooks/useSkin'
 import useJwt from '@src/auth/jwt/useJwt'
 import { useDispatch } from 'react-redux'
+import { toast, Slide } from 'react-toastify'
 import { handleLogin } from '@store/actions/auth'
 import { Link, useHistory } from 'react-router-dom'
 import { AbilityContext } from '@src/utility/context/Can'
 import InputPasswordToggle from '@components/input-password-toggle'
-import { Facebook, Twitter, Mail, GitHub } from 'react-feather'
+import { getHomeRouteForLoggedInUser } from '@utils'
+import { Facebook, Twitter, Mail, GitHub, Coffee } from 'react-feather'
 import { AvForm, AvInput, AvCheckboxGroup, AvCheckbox } from 'availity-reactstrap-validation-safe'
-import { Row, Col, CardTitle, CardText, FormGroup, Label, Button } from 'reactstrap'
+import { Row, Col, CardTitle, CardText, FormGroup, Label, Button, Spinner } from 'reactstrap'
 
 import '@styles/base/pages/page-auth.scss'
+
+const ToastContentValid = ({ name, role }) => (
+  <Fragment>
+    <div className='toastify-header'>
+      <div className='title-wrapper'>
+        <Avatar size='sm' color='success' icon={<Coffee size={12} />} />
+        <h6 className='toast-title font-weight-bold'>Welcome, {name}</h6>
+      </div>
+    </div>
+    <div className='toastify-body'>
+      <span>You have successfully logged in as an {role} user to Appia. Now you can start to explore. Enjoy!</span>
+    </div>
+  </Fragment>
+)
+
+
+const InvalidLoginToastContent = ({ message }) => (
+  <Fragment>
+    <div className='toastify-header'>
+      <div className='title-wrapper'>
+        <Avatar size='sm' color='success' icon={<Coffee size={12} />} />
+        <h6 className='toast-title font-weight-bold'>{message}</h6>
+      </div>
+    </div>
+    <div className='toastify-body'>
+      <span>Pls, reconfirm login credentials</span>
+    </div>
+  </Fragment>
+)
 
 const Register = () => {
   const ability = useContext(AbilityContext)
@@ -23,10 +55,13 @@ const Register = () => {
   const dispatch = useDispatch()
 
   const [email, setEmail] = useState('')
-  const [errors, setErrors] = useState({})
-  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [phone, setPhone] = useState('')
   const [terms, setTerms] = useState(false)
+  const [errors, setErrors] = useState({})
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const illustration = skin === 'dark' ? 'register-v2-dark.svg' : 'register-v2.svg',
     source = require(`@src/assets/images/pages/${illustration}`).default
@@ -42,28 +77,39 @@ const Register = () => {
     )
   }
 
-  const handleSubmit = (event, errors) => {
+  const handleSubmit = async (event, errors) => {
     if (errors && !errors.length) {
-      useJwt
-        .register({ username, email, password })
+      setIsSubmitting(true)
+      await useJwt
+        .register({ firstName, lastName, phone, email, password })
         .then(res => {
-          if (res.data.error) {
-            const arr = {}
-            for (const property in res.data.error) {
-              if (res.data.error[property] !== null) arr[property] = res.data.error[property]
+          console.log('haa', res)
+          if (res.data.status) {
+            const data = {
+              ...res.data.user,
+              accessToken: res.data.token,
+              refreshToken: res.data.token,
+              ability: [{ action: "manage", subject: "all" }],
+              avatar: "/demo/Appia-react-admin-dashboard-template/demo-1/static/media/avatar-s-11.1d46cc62.jpg",
+              extras: { eCommerceCartItemsCount: 5 }
             }
-            setErrors(arr)
-            if (res.data.error.email !== null) console.error(res.data.error.email)
-            if (res.data.error.username !== null) console.error(res.data.error.username)
-          } else {
-            setErrors({})
-            const data = { ...res.data.user, accessToken: res.data.accessToken }
-            ability.update(res.data.user.ability)
-            dispatch(handleLogin(data))
+            // dispatch(handleLogin(data))
+            // ability.update(data.ability)
+            toast.success(
+              <ToastContentValid name={`${data.firstName} ${data.lastName}` || 'John Doe'} role={data.role || 'admin'} />,
+              { transition: Slide, hideProgressBar: true, autoClose: 2000 }
+            )
             history.push('/')
+            // window.location.href = getHomeRouteForLoggedInUser('admin')
+          } else {
+            toast.error(
+              <InvalidLoginToastContent message={`${res.data.message}` || 'Invalid Login'} />,
+              { transition: Slide, hideProgressBar: true, autoClose: 2000 }
+            )
+            setIsSubmitting(false)
           }
         })
-        .catch(err => console.log(err))
+        .catch(err => console.log('err', err))
     }
   }
 
@@ -147,25 +193,49 @@ const Register = () => {
             </CardTitle>
             <CardText className='mb-2'>Make your app management easy and fun!</CardText>
 
-            <AvForm action='/' className='auth-register-form mt-2' onSubmit={handleSubmit}>
+            <AvForm className='auth-register-form mt-2' onSubmit={handleSubmit}>
               <FormGroup>
-                <Label className='form-label' for='register-username'>
-                  Username
+                <Label className='form-label' for='firstName'>
+                  First Name
                 </Label>
                 <AvInput
                   required
                   autoFocus
                   type='text'
-                  placeholder='johndoe'
-                  id='register-username'
-                  name='register-username'
-                  value={username}
-                  onChange={handleUsernameChange}
-                  className={classnames({ 'border-danger': Object.keys(errors).length && errors.username })}
+                  value={firstName}
+                  id='firstName'
+                  name='firstName'
+                  placeholder='First Name'
+                  onChange={e => setFirstName(e.target.value)}
                 />
-                {Object.keys(errors).length && errors.username ? (
-                  <small className='text-danger'>{errors.username}</small>
-                ) : null}
+              </FormGroup>
+              <FormGroup>
+                <Label className='form-label' for='lastName'>
+                  Last Name
+                </Label>
+                <AvInput
+                  required
+                  type='text'
+                  value={lastName}
+                  id='lastName'
+                  name='lastName'
+                  placeholder='Last Name'
+                  onChange={e => setLastName(e.target.value)}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label className='form-label' for='phone'>
+                  Phone
+                </Label>
+                <AvInput
+                  required
+                  type='number'
+                  value={phone}
+                  id='phone'
+                  name='phone'
+                  placeholder='Phone Number'
+                  onChange={e => setPhone(e.target.value)}
+                />
               </FormGroup>
               <FormGroup>
                 <Label className='form-label' for='register-email'>
@@ -177,9 +247,8 @@ const Register = () => {
                   id='register-email'
                   name='register-email'
                   value={email}
-                  placeholder='john@example.com'
-                  onChange={handleEmailChange}
-                  className={classnames({ 'border-danger': Object.keys(errors).length && errors.email })}
+                  placeholder='Email'
+                  onChange={e => setEmail(e.target.value)}
                 />
                 {Object.keys(errors).length && errors.email ? (
                   <small className='text-danger'>{errors.email}</small>
@@ -213,9 +282,10 @@ const Register = () => {
               <Button.Ripple
                 block
                 color='primary'
-                disabled={!email.length || !password.length || !username.length || !terms}
+                disabled={!email.length || !password.length || !firstName.length || !lastName.length || !phone.length || !terms || isSubmitting}
               >
-                Sign up
+                {isSubmitting && <Spinner color='white' size='sm' />}
+                <span className='ml-50'>Sign Up</span>
               </Button.Ripple>
             </AvForm>
             <p className='text-center mt-2'>
@@ -224,7 +294,7 @@ const Register = () => {
                 <span>Sign in instead</span>
               </Link>
             </p>
-            <div className='divider my-2'>
+            {/* <div className='divider my-2'>
               <div className='divider-text'>or</div>
             </div>
             <div className='auth-footer-btn d-flex justify-content-center'>
@@ -240,7 +310,7 @@ const Register = () => {
               <Button.Ripple className='mr-0' color='github'>
                 <GitHub size={14} />
               </Button.Ripple>
-            </div>
+            </div> */}
           </Col>
         </Col>
       </Row>

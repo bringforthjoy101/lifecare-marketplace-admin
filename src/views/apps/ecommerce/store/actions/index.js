@@ -42,6 +42,7 @@ export const deleteWishlistItem = id => {
 export const getCartItems = () => {
   return dispatch => {
     return axios.get('/apps/ecommerce/cart').then(res => {
+      console.log(res.data)
       dispatch({ type: 'GET_CART', data: res.data })
     })
   }

@@ -4,7 +4,7 @@ import { paginateArray, sortCompare } from '../utils'
 const data = {
   invoices: [
     {
-      id: 4987,
+      id: 1,
       issuedDate: '13 Dec 2019',
       client: {
         address: '7777 Mendez Plains',

@@ -1,7 +1,7 @@
 export const toastTranslucent = (
-  <pre>
-    <code className='language-jsx'>
-      {`
+	<pre>
+		<code className="language-jsx">
+			{`
 
 import { Toast, ToastBody, ToastHeader, Row, Col } from 'reactstrap'
 import transparentBg from '@src/assets/images/svg/transparent.svg'
@@ -18,7 +18,7 @@ const ToastTranslucent = () => {
       <Col md='6' sm='12'>
         <div className='p-3 bg-primary my-2 rounded'>
           <Toast>
-            <ToastHeader close={close}>TuckShop</ToastHeader>
+            <ToastHeader close={close}>Lifecare Admin</ToastHeader>
             <ToastBody>
               This is a toast on a primary background — check it out!
             </ToastBody>
@@ -28,7 +28,7 @@ const ToastTranslucent = () => {
       <Col md='6' sm='12'>
         <div className='p-3 bg-secondary my-2 rounded'>
           <Toast>
-            <ToastHeader close={close}>TuckShop</ToastHeader>
+            <ToastHeader close={close}>Lifecare Admin</ToastHeader>
             <ToastBody>
               This is a toast on a secondary background — check it out!
             </ToastBody>
@@ -38,7 +38,7 @@ const ToastTranslucent = () => {
       <Col md='6' sm='12'>
         <div className='p-3 bg-success my-2 rounded'>
           <Toast>
-            <ToastHeader close={close}>TuckShop</ToastHeader>
+            <ToastHeader close={close}>Lifecare Admin</ToastHeader>
             <ToastBody>
               This is a toast on a success background — check it out!
             </ToastBody>
@@ -48,7 +48,7 @@ const ToastTranslucent = () => {
       <Col md='6' sm='12'>
         <div className='p-3 bg-danger my-2 rounded'>
           <Toast>
-            <ToastHeader close={close}>TuckShop</ToastHeader>
+            <ToastHeader close={close}>Lifecare Admin</ToastHeader>
             <ToastBody>
               This is a toast on a danger background — check it out!
             </ToastBody>
@@ -58,7 +58,7 @@ const ToastTranslucent = () => {
       <Col md='6' sm='12'>
         <div className='p-3 bg-warning my-2 rounded'>
           <Toast>
-            <ToastHeader close={close}>TuckShop</ToastHeader>
+            <ToastHeader close={close}>Lifecare Admin</ToastHeader>
             <ToastBody>
               This is a toast on a warning background — check it out!
             </ToastBody>
@@ -68,7 +68,7 @@ const ToastTranslucent = () => {
       <Col md='6' sm='12'>
         <div className='p-3 bg-info my-2 rounded'>
           <Toast>
-            <ToastHeader close={close}>TuckShop</ToastHeader>
+            <ToastHeader close={close}>Lifecare Admin</ToastHeader>
             <ToastBody>
               This is a toast on an info background — check it out!
             </ToastBody>
@@ -79,7 +79,7 @@ const ToastTranslucent = () => {
       <Col md='6' sm='12'>
         <div className='p-3 bg-dark my-2 rounded'>
           <Toast>
-            <ToastHeader close={close}>TuckShop</ToastHeader>
+            <ToastHeader close={close}>Lifecare Admin</ToastHeader>
             <ToastBody>
               This is a toast on an dark background — check it out!
             </ToastBody>
@@ -95,7 +95,7 @@ const ToastTranslucent = () => {
           }}
         >
           <Toast>
-            <ToastHeader close={close}>TuckShop</ToastHeader>
+            <ToastHeader close={close}>Lifecare Admin</ToastHeader>
             <ToastBody>
               This is a toast on a transparent background — check it out!
             </ToastBody>
@@ -107,14 +107,14 @@ const ToastTranslucent = () => {
 }
 export default ToastTranslucent
 `}
-    </code>
-  </pre>
+		</code>
+	</pre>
 )
 
 export const toastHeaderIcons = (
-  <pre>
-    <code className='language-jsx'>
-      {`
+	<pre>
+		<code className="language-jsx">
+			{`
 
 import { Toast, ToastBody, ToastHeader, Spinner, Row, Col } from 'reactstrap'
 import logo from '@src/assets/images/logo/logo.png'
@@ -131,7 +131,7 @@ const ToastHeaderIcons = () => {
     <Row>
       <Col md='6' sm='12'>
         <Toast>
-          <ToastHeader close={close} icon='primary'>TuckShop</ToastHeader>
+          <ToastHeader close={close} icon='primary'>Lifecare Admin</ToastHeader>
           <ToastBody>
             This is a toast with a primary icon — check it out!
           </ToastBody>
@@ -139,7 +139,7 @@ const ToastHeaderIcons = () => {
       </Col>
       <Col md='6' sm='12'>
         <Toast>
-          <ToastHeader close={close} icon='success'>TuckShop</ToastHeader>
+          <ToastHeader close={close} icon='success'>Lifecare Admin</ToastHeader>
           <ToastBody>
             This is a toast with a success icon — check it out!
           </ToastBody>
@@ -147,7 +147,7 @@ const ToastHeaderIcons = () => {
       </Col>
       <Col md='6' sm='12'>
         <Toast>
-          <ToastHeader close={close} icon='info'>TuckShop</ToastHeader>
+          <ToastHeader close={close} icon='info'>Lifecare Admin</ToastHeader>
           <ToastBody>
             This is a toast with a info icon — check it out!
           </ToastBody>
@@ -155,7 +155,7 @@ const ToastHeaderIcons = () => {
       </Col>
       <Col md='6' sm='12'>
         <Toast>
-          <ToastHeader close={close} icon='danger'>TuckShop</ToastHeader>
+          <ToastHeader close={close} icon='danger'>Lifecare Admin</ToastHeader>
           <ToastBody>
             This is a toast with a danger icon — check it out!
           </ToastBody>
@@ -163,7 +163,7 @@ const ToastHeaderIcons = () => {
       </Col>
       <Col md='6' sm='12'>
         <Toast>
-          <ToastHeader close={close} icon='warning'>TuckShop</ToastHeader>
+          <ToastHeader close={close} icon='warning'>Lifecare Admin</ToastHeader>
           <ToastBody>
             This is a toast with a warning icon — check it out!
           </ToastBody>
@@ -171,7 +171,7 @@ const ToastHeaderIcons = () => {
       </Col>
       <Col md='6' sm='12'>
         <Toast>
-          <ToastHeader close={close} icon='dark'>TuckShop</ToastHeader>
+          <ToastHeader close={close} icon='dark'>Lifecare Admin</ToastHeader>
           <ToastBody>
             This is a toast with a dark icon — check it out!
           </ToastBody>
@@ -181,7 +181,7 @@ const ToastHeaderIcons = () => {
       <Col md='6' sm='12'>
         <Toast>
           <ToastHeader close={close} icon={<Spinner size='sm' color='primary' />}>
-            TuckShop
+            Lifecare Admin
           </ToastHeader>
           <ToastBody>This is a toast with a spinner — check it out!</ToastBody>
         </Toast>
@@ -189,7 +189,7 @@ const ToastHeaderIcons = () => {
 
       <Col md='6' sm='12'>
         <Toast>
-        <ToastHeader close={close} icon={logo}>TuckShop</ToastHeader>
+        <ToastHeader close={close} icon={logo}>Lifecare Admin</ToastHeader>
           <ToastBody>This is a toast with a logo — check it out!</ToastBody>
         </Toast>
       </Col>
@@ -198,6 +198,6 @@ const ToastHeaderIcons = () => {
 }
 export default ToastHeaderIcons
 `}
-    </code>
-  </pre>
+		</code>
+	</pre>
 )

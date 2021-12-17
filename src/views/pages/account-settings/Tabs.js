@@ -7,13 +7,19 @@ const Tabs = ({ activeTab, toggleTab }) => {
       <NavItem>
         <NavLink active={activeTab === '1'} onClick={() => toggleTab('1')}>
           <Lock size={18} className='mr-1' />
-          <span className='font-weight-bold'>Change Password</span>
+          <span className='font-weight-bold'>My Business</span>
         </NavLink>
       </NavItem>
       <NavItem>
         <NavLink active={activeTab === '2'} onClick={() => toggleTab('2')}>
           <Lock size={18} className='mr-1' />
-          <span className='font-weight-bold'> Reset Password</span>
+          <span className='font-weight-bold'>Change Password</span>
+        </NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink active={activeTab === '3'} onClick={() => toggleTab('3')}>
+          <Lock size={18} className='mr-1' />
+          <span className='font-weight-bold'> My Profile</span> 
         </NavLink>
       </NavItem>
     </Nav>

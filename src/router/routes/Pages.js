@@ -20,14 +20,14 @@ const PagesRoutes = [
     component: lazy(() => import('../../views/pages/authentication/LoginV2')),
     layout: 'BlankLayout'
   },
-  // {
-  //   path: '/register',
-  //   component: lazy(() => import('../../views/pages/authentication/Register')),
-  //   layout: 'BlankLayout',
-  //   meta: {
-  //     authRoute: true
-  //   }
-  // },
+  {
+    path: '/register',
+    component: lazy(() => import('../../views/pages/authentication/Register')),
+    layout: 'BlankLayout',
+    meta: {
+      authRoute: true
+    }
+  },
   {
     path: '/pages/register-v1',
     component: lazy(() => import('../../views/pages/authentication/RegisterV1')),

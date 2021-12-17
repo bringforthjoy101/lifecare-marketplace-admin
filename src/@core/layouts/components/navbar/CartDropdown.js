@@ -106,7 +106,7 @@ const CartDropdown = () => {
     <Dropdown isOpen={dropdownOpen} toggle={toggle} tag='li' className='dropdown-cart nav-item mr-25'>
       <DropdownToggle tag='a' className='nav-link position-relative'>
         <ShoppingCart className='ficon' />
-        {store.cart.length > 0 ? (
+        {store.cart?.length > 0 ? (
           <Badge pill color='primary' className='badge-up'>
             {store.cart.length}
           </Badge>

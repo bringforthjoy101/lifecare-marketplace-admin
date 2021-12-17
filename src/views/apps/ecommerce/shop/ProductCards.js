@@ -41,6 +41,7 @@ const ProductCards = props => {
 
   // ** Renders products
   const renderProducts = () => {
+    console.log('pro', products)
     if (products.length) {
       return products.map(item => {
         const CartBtnTag = item.isInCart ? Link : 'button'
