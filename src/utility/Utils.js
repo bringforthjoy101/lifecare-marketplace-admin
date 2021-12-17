@@ -129,13 +129,6 @@ export const Storage = {
 export const apiRequest = ({ url, method, body, contentType }, dispatch) => {
 	const userData = Storage.getItem('userData')
 	const { accessToken } = userData
-	if (method === 'POST') {
-		// body = body?.body
-		console.log('body', body)
-		body.forEach((value, key) => {
-			console.log('key %s: value %s', key, value)
-		})
-	}
 
 	console.log(contentType)
 	const headers = {

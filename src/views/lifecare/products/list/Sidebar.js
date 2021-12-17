@@ -90,7 +90,7 @@ const SidebarNewUsers = ({ open, toggleSidebar }) => {
 					method: 'post',
 					url: `${apiUrl}/products/create`,
 					data: formData,
-					headers: { Authorization: `Bearer ${accessToken}` },
+					headers: { Authorization: `Bearer ${accessToken}`, 'Content-Type': 'multipart/form-data' },
 				})
 
 				// const response = await fetch(`${apiUrl}/products/create`, {
