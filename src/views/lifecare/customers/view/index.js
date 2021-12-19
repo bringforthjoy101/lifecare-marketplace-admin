@@ -28,7 +28,7 @@ const UserView = (props) => {
 
 	const [userData, setUserData] = useState(null)
 
-	const [activeTransaction, setActiveTransaction] = useState('transactions')
+	const [activeTransaction, setActiveTransaction] = useState('orders')
 
 	// ** Get user on mount
 	useEffect(() => {
@@ -57,13 +57,13 @@ const UserView = (props) => {
 					<Row className="d-sm-block d-lg-flex justify-content-center">
 						<Nav pills className="nav-pill-primary my-2">
 							<NavItem>
-								<NavLink onClick={() => setActiveTransaction('transactions')} active={activeTransaction === 'transactions'}>
-									Transactions
+								<NavLink onClick={() => setActiveTransaction('orders')} active={activeTransaction === 'orders'}>
+									Orders
 								</NavLink>
 							</NavItem>
 							<NavItem>
-								<NavLink onClick={() => setActiveTransaction('orders')} active={activeTransaction === 'orders'}>
-									Orders
+								<NavLink onClick={() => setActiveTransaction('transactions')} active={activeTransaction === 'transactions'}>
+									Transactions
 								</NavLink>
 							</NavItem>
 						</Nav>

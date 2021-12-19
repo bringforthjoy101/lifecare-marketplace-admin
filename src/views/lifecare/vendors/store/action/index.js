@@ -9,7 +9,7 @@ export const getAllData = (role) => {
 		const response = await apiRequest({ url: '/vendors', method: 'GET' }, dispatch)
 		if (response && response.data.data && response.data.status) {
 			await dispatch({
-				type: 'GET_ALL_DATA',
+				type: 'GET_ALL_VENDOR_DATA',
 				data: response.data.data,
 			})
 		} else {
@@ -28,10 +28,10 @@ export const getFilteredData = (users, params) => {
 		const queryLowered = q.toLowerCase()
 		const filteredData = users.filter(
 			(user) =>
-				(user.names.toLowerCase().includes(queryLowered) ||
-					user.email.toLowerCase().includes(queryLowered) ||
-					user.phone?.toString().toLowerCase().includes(queryLowered)) &&
-				user.status === (status || user.status)
+				(user?.names?.toLowerCase().includes(queryLowered) ||
+					user?.email?.toLowerCase().includes(queryLowered) ||
+					user?.phone?.toString().toLowerCase().includes(queryLowered)) &&
+				user?.status === (status || user.status)
 		)
 
 		/* eslint-enable  */

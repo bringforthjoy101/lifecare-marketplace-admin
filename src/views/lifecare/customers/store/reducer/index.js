@@ -19,7 +19,7 @@ const initialState = {
 
 const customers = (state = initialState, action) => {
 	switch (action.type) {
-		case 'GET_ALL_DATA':
+		case 'GET_ALL_CUSTOMER_DATA':
 			console.log(action.data)
 			return { ...state, allData: action.data }
 		case 'GET_FILTERED_CUSTOMER_DATA':

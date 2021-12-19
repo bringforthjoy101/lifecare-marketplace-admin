@@ -55,6 +55,19 @@ const SidebarNewUsers = ({ open, toggleSidebar }) => {
 	console.log(productData)
 	const [isSubmitting, setIsSubmitting] = useState(false)
 
+	const uploadImage = (file) => {
+		const reader = new FileReader()
+		console.log('next')
+		// const base64String = reader.result.replace('data:', '').replace(/^.+,/, '')
+
+		reader.onload = function () {
+			const base64String = reader.result
+			console.log(base64String)
+			setProductData({ ...productData, image: base64String })
+		}
+		reader.readAsDataURL(file)
+	}
+
 	// ** Function to handle form submit
 	const onSubmit = async (event, errors) => {
 		setIsSubmitting(true)
@@ -66,32 +79,16 @@ const SidebarNewUsers = ({ open, toggleSidebar }) => {
 			const { name, qty, unitId, categoryIds, typeId, shopId, price, salesPrice, description, image, gallery } = productData
 			console.log(name, qty, unitId, categoryIds, typeId, shopId, price, salesPrice, description, image, gallery)
 			setIsSubmitting(true)
-			const formData = new FormData()
-			formData.append('name', name)
-			formData.append('qty', qty)
-			formData.append('unitId', unitId)
-			formData.append('categoryIds', categoryIds)
-			formData.append('typeId', typeId)
-			formData.append('shopId', shopId)
-			formData.append('price', price)
-			formData.append('salesPrice', salesPrice)
-			formData.append('description', description)
-			formData.append('image', image)
-			formData.append('gallery', gallery)
-			console.log(formData.entries())
-			for (const key of formData.entries()) {
-				console.log(key)
-			}
 			try {
-				// const response = await apiRequest({ url: '/products/create', method: 'POST', body: formData, contentType: 'multipart/form-data' }, dispatch)
+				const response = await apiRequest({ url: '/products/create', method: 'POST', body: productData }, dispatch)
 				// const headers = formData.getHeaders()
 				// console.log(headers)
-				const response = await axios({
-					method: 'post',
-					url: `${apiUrl}/products/create`,
-					data: formData,
-					headers: { Authorization: `Bearer ${accessToken}`, 'Content-Type': 'multipart/form-data' },
-				})
+				// const response = await axios({
+				// 	method: 'post',
+				// 	url: `${apiUrl}/products/create`,
+				// 	data: formData,
+				// 	headers: { Authorization: `Bearer ${accessToken}`, 'Content-Type': 'multipart/form-data' },
+				// })
 
 				// const response = await fetch(`${apiUrl}/products/create`, {
 				// 	method: 'POST',
@@ -271,23 +268,29 @@ const SidebarNewUsers = ({ open, toggleSidebar }) => {
 						name="image"
 						accept="image/*"
 						label="Pick product image"
-						onChange={(e) => setProductData({ ...productData, image: e.target.files[0] })}
+						onChange={(e) => {
+							uploadImage(e.target.files[0])
+							// setProductData({ ...productData, image: e.target.files[0] })
+						}}
 						required
 					/>
 				</FormGroup>
-				<FormGroup>
+				{/* <FormGroup>
 					<Label for="gallery"></Label>
 					<CustomInput
 						type="file"
 						id="gallery"
 						name="gallery"
 						accept="image/*"
-						onChange={(e) => setProductData({ ...productData, gallery: e.target.files })}
+						onChange={(e) => {
+							uploadImage(e.target.files)
+							// setProductData({ ...productData, gallery: e.target.files })
+						}}
 						required
 						multiple
 						label="Pick multiple images for gallery"
 					/>
-				</FormGroup>
+				</FormGroup> */}
 				<Button type="submit" className="mr-1" color="primary" disabled={isSubmitting}>
 					{isSubmitting && <Spinner color="white" size="sm" />}
 					<span className="ml-50">Submit</span>

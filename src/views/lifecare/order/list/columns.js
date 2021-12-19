@@ -58,7 +58,7 @@ export const columns = [
 			<div className="d-flex justify-content-left align-items-center">
 				{renderClient(row.user)}
 				<div className="d-flex flex-column">
-					<Link to={`/client/view/${row.userId}`} className="user-name text-truncate mb-0">
+					<Link to={`/customers/view/${row.userId}`} className="user-name text-truncate mb-0">
 						<span className="font-weight-bold">{row.user.names.length < 35 ? row.user.names : `${row.user.names.substring(0, 35)}...`}</span>
 					</Link>
 				</div>

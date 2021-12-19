@@ -9,7 +9,7 @@ export const getAllData = (role) => {
 		const response = await apiRequest({ url: '/shops', method: 'GET' }, dispatch)
 		if (response && response.data.data && response.data.status) {
 			await dispatch({
-				type: 'GET_ALL_DATA',
+				type: 'GET_ALL_SHOP_DATA',
 				data: response.data.data,
 			})
 		} else {
@@ -28,10 +28,10 @@ export const getFilteredData = (users, params) => {
 		const queryLowered = q.toLowerCase()
 		const filteredData = users.filter(
 			(user) =>
-				(user.name.toLowerCase().includes(queryLowered) ||
-					user.address.toLowerCase().includes(queryLowered) ||
-					user.location.toLowerCase().includes(queryLowered) ||
-					user.phone?.toString().toLowerCase().includes(queryLowered)) &&
+				(user?.name?.toLowerCase().includes(queryLowered) ||
+					user?.address?.toLowerCase().includes(queryLowered) ||
+					user?.location?.toLowerCase().includes(queryLowered) ||
+					user?.phone?.toString().toLowerCase().includes(queryLowered)) &&
 				user.status === (status || user.status)
 		)
 

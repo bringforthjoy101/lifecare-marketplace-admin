@@ -31,6 +31,7 @@ const Print = () => {
 
 	const renderTable = (products) => {
 		console.log(products)
+		products = JSON.parse(products)
 		return products.map((product) => {
 			return (
 				<tr key={product.product_id}>

@@ -19,7 +19,7 @@ const initialState = {
 
 const vendors = (state = initialState, action) => {
 	switch (action.type) {
-		case 'GET_ALL_DATA':
+		case 'GET_ALL_VENDOR_DATA':
 			console.log(action.data)
 			return { ...state, allData: action.data }
 		case 'GET_FILTERED_VENDOR_DATA':
