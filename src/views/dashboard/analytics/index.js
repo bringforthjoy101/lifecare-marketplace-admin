@@ -93,7 +93,7 @@ const AnalyticsDashboard = () => {
 					<StatsVertical
 						icon={<TrendingUp size={21} />}
 						color="primary"
-						stats={dashData.orders ? `₦${numFormatter(dashData.orders?.totalOrders)}` : <Spinner className="mr-25" size="sm" />}
+						stats={dashData.orders ? `₦${numFormatter(dashData.orders?.totalOrders || '0')}` : <Spinner className="mr-25" size="sm" />}
 						statTitle="Orders by Value"
 					/>
 				</Col>
@@ -101,7 +101,7 @@ const AnalyticsDashboard = () => {
 					<StatsVertical
 						icon={<TrendingUp size={21} />}
 						color="primary"
-						stats={dashData.orders ? `₦${numFormatter(dashData.orders?.maxOrders)}` : <Spinner className="mr-25" size="sm" />}
+						stats={dashData.orders ? `₦${numFormatter(dashData.orders?.maxOrders || '0')}` : <Spinner className="mr-25" size="sm" />}
 						statTitle="Max Sales"
 					/>
 				</Col>
@@ -119,7 +119,7 @@ const AnalyticsDashboard = () => {
 					<StatsVertical
 						icon={<TrendingUp size={21} />}
 						color="primary"
-						stats={dashData.orders ? `₦${numFormatter(dashData.orders?.ordersToday)}` : <Spinner className="mr-25" size="sm" />}
+						stats={dashData.orders ? `₦${numFormatter(dashData.orders?.ordersToday || '0')}` : <Spinner className="mr-25" size="sm" />}
 						statTitle="Today"
 					/>
 				</Col>
@@ -127,7 +127,7 @@ const AnalyticsDashboard = () => {
 					<StatsVertical
 						icon={<TrendingUp size={21} />}
 						color="primary"
-						stats={dashData.orders ? `₦${numFormatter(dashData.orders?.ordersYesterday)}` : <Spinner className="mr-25" size="sm" />}
+						stats={dashData.orders ? `₦${numFormatter(dashData.orders?.ordersYesterday || '0')}` : <Spinner className="mr-25" size="sm" />}
 						statTitle="Yesterday"
 					/>
 				</Col>
@@ -135,7 +135,7 @@ const AnalyticsDashboard = () => {
 					<StatsVertical
 						icon={<TrendingUp size={21} />}
 						color="primary"
-						stats={dashData.orders ? `₦${numFormatter(dashData.orders?.ordersThisWeek)}` : <Spinner className="mr-25" size="sm" />}
+						stats={dashData.orders ? `₦${numFormatter(dashData.orders?.ordersThisWeek || '0')}` : <Spinner className="mr-25" size="sm" />}
 						statTitle="This Week"
 					/>
 				</Col>
@@ -143,7 +143,7 @@ const AnalyticsDashboard = () => {
 					<StatsVertical
 						icon={<TrendingUp size={21} />}
 						color="primary"
-						stats={dashData.orders ? `₦${numFormatter(dashData.orders?.ordersThisMonth)}` : <Spinner className="mr-25" size="sm" />}
+						stats={dashData.orders ? `₦${numFormatter(dashData.orders?.ordersThisMonth || '0')}` : <Spinner className="mr-25" size="sm" />}
 						statTitle="This Month"
 					/>
 				</Col>
@@ -151,7 +151,7 @@ const AnalyticsDashboard = () => {
 					<StatsVertical
 						icon={<TrendingUp size={21} />}
 						color="primary"
-						stats={dashData.orders ? `₦${numFormatter(dashData.orders?.ordersThisYear)}` : <Spinner className="mr-25" size="sm" />}
+						stats={dashData.orders ? `₦${numFormatter(dashData.orders?.ordersThisYear || '0')}` : <Spinner className="mr-25" size="sm" />}
 						statTitle="This Year"
 					/>
 				</Col>
@@ -159,7 +159,7 @@ const AnalyticsDashboard = () => {
 					<StatsVertical
 						icon={<TrendingUp size={21} />}
 						color="primary"
-						stats={dashData.orders ? `₦${numFormatter(dashData.orders?.ordersSoFar.toFixed(0))}` : <Spinner className="mr-25" size="sm" />}
+						stats={dashData.orders ? `₦${numFormatter(dashData.orders?.ordersSoFar.toFixed(0) || '0')}` : <Spinner className="mr-25" size="sm" />}
 						statTitle="So Far"
 					/>
 				</Col>
