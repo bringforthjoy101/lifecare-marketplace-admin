@@ -15,7 +15,7 @@ const SubscribersGained = ({ kFormatter, dashData, title }) => {
 		<StatsWithAreaChart
 			icon={<Users size={21} />}
 			color="primary"
-			stats={kFormatter(dashData?.totalStudents) || <Spinner className="mr-25" size="sm" />}
+			stats={kFormatter(dashData?.totalUsers) || <Spinner className="mr-25" size="sm" />}
 			statTitle={title}
 			series={data.series}
 			type="area"
