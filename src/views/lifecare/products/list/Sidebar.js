@@ -68,6 +68,35 @@ const SidebarNewUsers = ({ open, toggleSidebar }) => {
 		reader.readAsDataURL(file)
 	}
 
+	const uploadImage2 = async (event) => {
+		console.log('hi')
+		event?.preventDefault()
+		console.log(event)
+		const formData = new FormData()
+		formData.append('image', event.target.files[0])
+		try {
+			const response = await apiRequest({
+				url: '/upload-images',
+				method: 'POST',
+				body: formData,
+			})
+			if (response) {
+				if (response?.data?.status) {
+					const avatar = response.data.data
+					// setIsSubmitting(false)
+					console.log({ avatar })
+					setProductData({ ...productData, image: avatar[0] })
+				} else {
+					swal('Oops!', response.data.message, 'error')
+				}
+			} else {
+				swal('Oops!', 'Something went wrong with your image.', 'error')
+			}
+		} catch (error) {
+			console.error({ error })
+		}
+	}
+
 	// ** Function to handle form submit
 	const onSubmit = async (event, errors) => {
 		setIsSubmitting(true)
@@ -262,18 +291,7 @@ const SidebarNewUsers = ({ open, toggleSidebar }) => {
 				</FormGroup>
 				<FormGroup>
 					<Label for="image">Product Image</Label>
-					<CustomInput
-						type="file"
-						id="image"
-						name="image"
-						accept="image/*"
-						label="Pick product image"
-						onChange={(e) => {
-							uploadImage(e.target.files[0])
-							// setProductData({ ...productData, image: e.target.files[0] })
-						}}
-						required
-					/>
+					<CustomInput type="file" id="image" name="image" accept="image/*" label="Pick product image" onChange={(e) => uploadImage2(e)} required />
 				</FormGroup>
 				{/* <FormGroup>
 					<Label for="gallery"></Label>
