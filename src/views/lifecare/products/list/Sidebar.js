@@ -187,6 +187,10 @@ const SidebarNewUsers = ({ open, toggleSidebar }) => {
 					/>
 				</FormGroup>
 				<FormGroup>
+					<Label for="image">Product Image</Label>
+					<CustomInput type="file" id="image" name="image" accept="image/*" label="Pick product image" onChange={(e) => uploadImage2(e)} required />
+				</FormGroup>
+				<FormGroup>
 					<Label for="qty">Quantity</Label>
 					<AvInput
 						name="qty"
@@ -288,10 +292,6 @@ const SidebarNewUsers = ({ open, toggleSidebar }) => {
 						onChange={(e) => setProductData({ ...productData, description: e.target.value })}
 						required
 					/>
-				</FormGroup>
-				<FormGroup>
-					<Label for="image">Product Image</Label>
-					<CustomInput type="file" id="image" name="image" accept="image/*" label="Pick product image" onChange={(e) => uploadImage2(e)} required />
 				</FormGroup>
 				{/* <FormGroup>
 					<Label for="gallery"></Label>
